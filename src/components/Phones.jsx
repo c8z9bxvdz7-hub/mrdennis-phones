@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { phones } from "../data/phones";
 import PhoneCard from "./PhoneCard";
+import PhoneModal from "./PhoneModal";
 import Reveal from "./Reveal";
 
 const brands = ["All", ...new Set(phones.map((p) => p.brand))];
 
 function Phones() {
   const [activeBrand, setActiveBrand] = useState("All");
+  const [selectedPhone, setSelectedPhone] = useState(null);
 
   const visiblePhones =
     activeBrand === "All"
@@ -25,8 +27,8 @@ function Phones() {
               Available Phones
             </h2>
             <p className="mx-auto mt-3 max-w-xl font-medium text-slate-700">
-              Pick a phone and order directly on WhatsApp. Prices are in Ghana
-              cedis.
+              Tap a phone to see its details, then order directly on WhatsApp.
+              Prices are in Ghana cedis.
             </p>
           </div>
         </Reveal>
@@ -54,11 +56,19 @@ function Phones() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visiblePhones.map((phone, i) => (
             <Reveal key={phone.id} delay={(i % 3) * 120} className="h-full">
-              <PhoneCard phone={phone} />
+              <PhoneCard phone={phone} onOpen={setSelectedPhone} />
             </Reveal>
           ))}
         </div>
       </div>
+
+      {/* Big detail card */}
+      {selectedPhone && (
+        <PhoneModal
+          phone={selectedPhone}
+          onClose={() => setSelectedPhone(null)}
+        />
+      )}
     </section>
   );
 }

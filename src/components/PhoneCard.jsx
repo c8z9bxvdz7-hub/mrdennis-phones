@@ -1,17 +1,20 @@
 import { whatsappLink } from "../config";
 
-function PhoneCard({ phone }) {
+function PhoneCard({ phone, onOpen }) {
   const message = `Hello, I am interested in the ${phone.name} (${phone.storage}, ${phone.condition}) listed at GH₵ ${phone.price.toLocaleString()}.`;
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-md transition duration-300 hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10">
+    <article
+      onClick={() => onOpen(phone)}
+      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-md transition duration-300 hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10"
+    >
       {/* Image area */}
-      <div className="relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100">
+      <div className="relative flex h-72 items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100">
         {phone.image ? (
           <img
             src={phone.image}
             alt={phone.name}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-105"
           />
         ) : (
           <span
@@ -37,6 +40,10 @@ function PhoneCard({ phone }) {
             Sold out
           </span>
         )}
+
+        <span className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow">
+          View details
+        </span>
       </div>
 
       {/* Details */}
@@ -44,7 +51,14 @@ function PhoneCard({ phone }) {
         <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">
           {phone.brand}
         </p>
-        <h3 className="mt-1 text-lg font-bold text-slate-900">{phone.name}</h3>
+        <h3 className="mt-1 text-lg font-bold text-slate-900">
+          <button
+            type="button"
+            className="text-left transition group-hover:text-blue-600 focus:outline-none focus-visible:underline"
+          >
+            {phone.name}
+          </button>
+        </h3>
         <p className="text-sm font-medium text-slate-700">{phone.storage}</p>
 
         <p className="mt-4 text-2xl font-extrabold text-slate-900">
@@ -57,17 +71,15 @@ function PhoneCard({ phone }) {
               href={whatsappLink(message)}
               target="_blank"
               rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="block rounded-lg bg-slate-900 py-3 text-center font-semibold text-white transition hover:bg-blue-500"
             >
               Order on WhatsApp
             </a>
           ) : (
-            <button
-              disabled
-              className="block w-full cursor-not-allowed rounded-lg bg-slate-100 py-3 font-semibold text-slate-500"
-            >
+            <div className="block rounded-lg bg-slate-100 py-3 text-center font-semibold text-slate-500">
               Currently unavailable
-            </button>
+            </div>
           )}
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { whatsappLink } from "../config";
 import Reveal from "./Reveal";
 
@@ -22,7 +23,7 @@ function Home() {
         <div className="text-center md:text-left">
           <Reveal>
             <p className="inline-block rounded-full bg-blue-50 px-4 py-1 text-sm font-medium text-blue-600">
-              📍 Accra, Ghana
+              📍 Circle, Near Odo Rice, Accra, Ghana
             </p>
           </Reveal>
 
@@ -42,12 +43,12 @@ function Home() {
 
           <Reveal delay={300}>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row md:justify-start sm:justify-center">
-              <a
-                href="#phones"
+              <Link
+                to="/phones"
                 className="w-full rounded-lg bg-blue-500 px-8 py-3 text-center font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 hover:bg-blue-600 sm:w-auto"
               >
                 Browse Phones
-              </a>
+              </Link>
               <a
                 href={whatsappLink("Hello, I want to swap my phone.")}
                 target="_blank"
@@ -66,7 +67,11 @@ function Home() {
             <div className="animate-float relative h-[420px] w-[210px] rounded-[2.5rem] border-[8px] border-slate-900 bg-slate-900 shadow-2xl shadow-blue-500/30">
               <div className="absolute left-1/2 top-2 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-slate-900" />
               <div className="flex h-full w-full flex-col items-center justify-center rounded-[2rem] bg-gradient-to-br from-blue-400 to-blue-600 text-white">
-                <span className="text-6xl">📱</span>
+                <img
+                  src="/logo.jpg"
+                  alt="Mr Dennis Phones logo"
+                  className="h-20 w-20 rounded-full object-cover shadow-lg ring-4 ring-white/40"
+                />
                 <p className="mt-4 text-lg font-bold">Mr Dennis</p>
                 <p className="text-sm text-blue-100">Phones</p>
               </div>

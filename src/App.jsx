@@ -1,14 +1,35 @@
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Phones from "./components/Phones";
+import ScrollToTop from "./components/ScrollToTop";
+import HomePage from "./pages/HomePage";
+import PhonesPage from "./pages/PhonesPage";
+import ComingSoon from "./pages/ComingSoon";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#e9eff7]">
+      <ScrollToTop />
       <Navbar />
       <main>
-        <Home />
-        <Phones />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/phones" element={<PhonesPage />} />
+          <Route
+            path="/swap"
+            element={<ComingSoon title="Swap & Trade-in" />}
+          />
+          <Route
+            path="/data-bundles"
+            element={<ComingSoon title="Data Bundles" />}
+          />
+          <Route
+            path="/accessories"
+            element={<ComingSoon title="Accessories" />}
+          />
+          <Route path="/contact" element={<ComingSoon title="Contact" />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </main>
     </div>
   );

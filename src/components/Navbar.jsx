@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { whatsappLink } from "../config";
 
 const links = [
-  { label: "Home", href: "#home" },
-  { label: "Phones", href: "#phones" },
-  { label: "Swap", href: "#swap" },
-  { label: "Data Bundles", href: "#bundles" },
-  { label: "Accessories", href: "#accessories" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", to: "/" },
+  { label: "Phones", to: "/phones" },
+  { label: "Swap", to: "/swap" },
+  { label: "Data Bundles", to: "/data-bundles" },
+  { label: "Accessories", to: "/accessories" },
+  { label: "Contact", to: "/contact" },
 ];
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => {
@@ -25,7 +27,7 @@ function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <header
@@ -35,28 +37,37 @@ function Navbar() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         {/* Logo / name */}
-        <a
-          href="#home"
+        <Link
+          to="/"
           className="flex items-center gap-2 text-xl font-extrabold text-slate-900"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-lg">
-            📱
-          </span>
+          <img
+            src="/logo.jpg"
+            alt="Mr Dennis Phones logo"
+            className="h-12 w-12 rounded-full object-cover"
+          />
           <span>
             Mr Dennis <span className="text-blue-500">Phones</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden items-center gap-7 md:flex">
           {links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="relative text-sm font-semibold text-slate-800 transition-colors hover:text-blue-600 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full"
+            <li key={link.to}>
+              <NavLink
+                to={link.to}
+                end={link.to === "/"}
+                className={({ isActive }) =>
+                  `relative text-sm font-semibold transition-colors after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-blue-500 after:transition-all after:duration-300 ${
+                    isActive
+                      ? "text-blue-600 after:w-full"
+                      : "text-slate-800 after:w-0 hover:text-blue-600 hover:after:w-full"
+                  }`
+                }
               >
                 {link.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -86,14 +97,21 @@ function Navbar() {
         <div className="border-t border-slate-200 bg-white px-4 pb-4 md:hidden">
           <ul className="flex flex-col gap-1 pt-2">
             {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  end={link.to === "/"}
                   onClick={() => setOpen(false)}
-                  className="block rounded-md px-2 py-3 font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+                  className={({ isActive }) =>
+                    `block rounded-md px-2 py-3 font-medium ${
+                      isActive
+                        ? "bg-blue-50 text-blue-600"
+                        : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+                    }`
+                  }
                 >
                   {link.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
