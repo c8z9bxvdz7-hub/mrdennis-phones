@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import PhonesPage from "./pages/PhonesPage";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
+import DataBundlesPage from "./pages/DataBundlesPage";
 
 function App() {
   return (
@@ -19,10 +20,7 @@ function App() {
             path="/swap"
             element={<ComingSoon title="Swap & Trade-in" />}
           />
-          <Route
-            path="/data-bundles"
-            element={<ComingSoon title="Data Bundles" />}
-          />
+          <Route path="/data-bundles" element={<DataBundlesPage />} />
           <Route
             path="/accessories"
             element={<ComingSoon title="Accessories" />}

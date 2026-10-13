@@ -6,4 +6,6 @@ export const BUSINESS = {
 }
 
 export const whatsappLink = (message = 'Hello, I am interested in a phone.') =>
-  `https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(message)}`
+    `https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(message)}`
+
+export const DATA_STORE_URL = "https://simpledatagh.com/store/swift-data-bundles";
