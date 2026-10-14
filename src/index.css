@@ -111,3 +111,40 @@ body {
     animation: none;
   }
 }
+
+/* Installment bar and swap ribbon animations */
+@keyframes stripes {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 28px 0;
+  }
+}
+
+.animate-stripes {
+  animation: stripes 1s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-stripes,
+  .animate-marquee {
+    animation: none;
+  }
+}

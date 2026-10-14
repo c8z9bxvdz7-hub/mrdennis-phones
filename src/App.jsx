@@ -7,6 +7,7 @@ import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import DataBundlesPage from "./pages/DataBundlesPage";
 import AccessoriesPage from "./pages/AccessoriesPage";
+import SwapPage from "./pages/SwapPage";
 
 function App() {
   return (
@@ -17,10 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/phones" element={<PhonesPage />} />
-          <Route
-            path="/swap"
-            element={<ComingSoon title="Swap & Trade-in" />}
-          />
+          <Route path="/swap" element={<SwapPage />} />
           <Route path="/data-bundles" element={<DataBundlesPage />} />
           <Route path="/accessories" element={<AccessoriesPage />} />
           <Route path="/contact" element={<ComingSoon title="Contact" />} />
