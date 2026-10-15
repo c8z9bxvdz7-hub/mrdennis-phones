@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 /* ---------- The designs ---------- */
 
 // 1. Phone with your logo in the middle
-function PhonesDesign() {
+export function PhonesDesign() {
   return (
     <div className="absolute inset-0 flex items-center justify-center">
       <Reveal direction="zoom" delay={150}>
@@ -212,7 +212,7 @@ const ACCESSORY_TILES = [
   { icon: "🔋", label: "Power banks", tilt: "rotate-1" },
 ];
 
-function AccessoriesDesign() {
+export function AccessoriesDesign() {
   return (
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="grid grid-cols-3 gap-3 md:gap-4">
