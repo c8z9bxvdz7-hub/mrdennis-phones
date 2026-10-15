@@ -148,3 +148,23 @@ body {
     animation: none;
   }
 }
+/* Prevent horizontal page scrolling */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+}
+/* Responsive sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
